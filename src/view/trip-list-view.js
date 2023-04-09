@@ -5,7 +5,7 @@ const createTripListTemplate = () => (
   </ul>`
 );
 
-export default class TripList{
+export default class TripListView{
   getTemplate() {
     return createTripListTemplate();
   }

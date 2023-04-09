@@ -1,10 +1,10 @@
 import { render, RenderPosition } from './render';
-import Filter from './view/filter';
-import Trip from './presenter/trip';
+import FilterView from './view/filter-view';
+import Trip from './presenter/trip-presenter';
 
 const filterContainer = document.querySelector('.trip-controls__filters');
 const tripContainer = document.querySelector('.trip-events');
 const tripPresenter = new Trip({container: tripContainer});
 
-render(new Filter(), filterContainer, RenderPosition.BEFOREEND);
+render(new FilterView(), filterContainer, RenderPosition.BEFOREEND);
 tripPresenter.init();

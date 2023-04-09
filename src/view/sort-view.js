@@ -27,7 +27,7 @@ const createSortTemplate = () => (`<form class="trip-events__trip-sort  trip-sor
 </div>
 </form>`);
 
-export default class Sort {
+export default class SortView{
   getTemplate() {
     return createSortTemplate();
   }
