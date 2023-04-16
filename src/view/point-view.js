@@ -3,7 +3,8 @@ import { createElement } from '../render';
 const  createPointTemplate = (point, destinations, offersByType) => {
   const pointDestination = destinations.find((dest) => dest.id === point.destination);
   const pointTypeOffers = offersByType.find((off) => off.type === point.type).offers;
-  const pointOffers = pointTypeOffers.filter((offer) => point.offers.indcludes(offer.id));
+  const pointOffers = pointTypeOffers.filter((offer) => point.offers.includes(offer.id));
+
   return (
     `<li class="trip-events__item">
       <div class="event">

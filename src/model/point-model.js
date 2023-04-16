@@ -1,6 +1,6 @@
 import { points } from '../mocks/points';
 import { destinations } from '../mocks/destinations';
-import { offersByType } from '../mocks/offers';
+import { offersByType } from '../mocks/offer';
 
 export default class PointModel {
   constructor() {

@@ -45,7 +45,7 @@ export const offersByType = [
     ]
   },
   {
-    'type': 'Train',
+    'type': 'train',
     'offers': [
       {
         'id': 8,
@@ -65,7 +65,7 @@ export const offersByType = [
     ]
   },
   {
-    'type': 'Ship',
+    'type': 'ship',
     'offers': [
       {
         'id': 11,
@@ -85,7 +85,7 @@ export const offersByType = [
     ]
   },
   {
-    'type': 'Drive',
+    'type': 'drive',
     'offers': [
       {
         'id': 14,
@@ -105,27 +105,7 @@ export const offersByType = [
     ]
   },
   {
-    'type': 'Flight',
-    'offers': [
-      {
-        'id': 17,
-        'title': 'flight offer 0',
-        'price': 396
-      },
-      {
-        'id': 18,
-        'title': 'flight offer 1',
-        'price': 978
-      },
-      {
-        'id': 19,
-        'title': 'flight offer 2',
-        'price': 6789
-      }
-    ]
-  },
-  {
-    'type': 'Flight',
+    'type': 'flight',
     'offers': [
       {
         'id': 17,
