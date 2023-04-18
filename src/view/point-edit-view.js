@@ -1,9 +1,11 @@
 import { POINT_TYPES } from '../const';
 import { createElement } from '../render';
 const upFirstLetter = (word) => `${word[0].toUpperCase()}${word.slice(1)}`;
+const formatOfferTitles = (title) => title.split('').join('_');
 
-const createPointEditTemplate = (point, destinations) => {
+const createPointEditTemplate = (point, destinations, offersByType) => {
   const pointDestination = destinations.find((dest) => dest.id === point.destination);
+  const pointTypeOffers = offersByType.find((off) => off.type === point.type).offers;
 
   return (
     `<li class="trip-events__item">
@@ -70,50 +72,19 @@ const createPointEditTemplate = (point, destinations) => {
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
 
         <div class="event__available-offers">
-          <div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-${point.id}" type="checkbox" name="event-offer-luggage" checked>
-            <label class="event__offer-label" for="event-offer-luggage-${point.id}">
-              <span class="event__offer-title">Add luggage</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">50</span>
-            </label>
-          </div>
 
-          <div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-comfort-${point.id}" type="checkbox" name="event-offer-comfort" checked>
-            <label class="event__offer-label" for="event-offer-comfort-${point.id}">
-              <span class="event__offer-title">Switch to comfort</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">80</span>
-            </label>
-          </div>
+    ${pointTypeOffers.map((typeOffer) => (
+      `<div class="event__offer-selector">
+        <input class="event__offer-checkbox  visually-hidden" id="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}"
+         type="checkbox" name="event-offer-${formatOfferTitles(typeOffer.title)}" ${point.offers.includes(typeOffer.id) ? 'checked' : ''}>
+        <label class="event__offer-label" for="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}">
+        <span class="event__offer-title">${typeOffer.title}</span>
+          &plus;&euro;&nbsp;
+        <span class="event__offer-price">${typeOffer.price}</span>
+        </label>
+      </div>`
+    )).join('')}
 
-          <div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-meal-${point.id}" type="checkbox" name="event-offer-meal">
-            <label class="event__offer-label" for="event-offer-meal-${point.id}">
-              <span class="event__offer-title">Add meal</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">15</span>
-            </label>
-          </div>
-
-          <div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-seats-${point.id}" type="checkbox" name="event-offer-seats">
-            <label class="event__offer-label" for="event-offer-seats-${point.id}">
-              <span class="event__offer-title">Choose seats</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">5</span>
-            </label>
-          </div>
-
-          <div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-train-${point.id}" type="checkbox" name="event-offer-train">
-            <label class="event__offer-label" for="event-offer-train-${point.id}">
-              <span class="event__offer-title">Travel by train</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">40</span>
-            </label>
-          </div>
         </div>
       </section>
 
@@ -133,13 +104,14 @@ const createPointEditTemplate = (point, destinations) => {
 };
 
 export default class PointEditView{
-  constructor(point, destinations) {
+  constructor(point, destinations, offersByType) {
     this.point = point;
     this.destinations = destinations;
+    this.offersByType = offersByType;
   }
 
   getTemplate() {
-    return createPointEditTemplate(this.point, this.destinations);
+    return createPointEditTemplate(this.point, this.destinations, this.offersByType);
   }
 
   getElement() {
