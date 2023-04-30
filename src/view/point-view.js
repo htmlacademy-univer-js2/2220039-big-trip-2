@@ -10,16 +10,16 @@ const  createPointTemplate = (point, destinations, offersByType) => {
   return (
     `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="${'2019-03-18'}">${humanizeDate(point.dateFrom, DateFormat.MAIN)}</time>
+        <time class="event__date" datetime="${humanizeDate(point.dateFrom, DateFormat.SERVICE_MAIN)}">${humanizeDate(point.dateFrom, DateFormat.MAIN)}</time>
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${point.type}.png" alt="Event type icon">
       </div>
       <h3 class="event__title">${point.type} ${pointDestination.name}</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="${'2019-03-18T12:25'}">${humanizeDate(point.dateFrom, DateFormat.VIEW)}</time>
+          <time class="event__start-time" datetime="${humanizeDate(point.dateFrom, DateFormat.SERVICE)}">${humanizeDate(point.dateFrom, DateFormat.VIEW)}</time>
           —
-          <time class="event__end-time" datetime="${'2019-03-18T13:35'}">${humanizeDate(point.dateTo, DateFormat.VIEW)}</time>
+          <time class="event__end-time" datetime="${humanizeDate(point.dateTo, DateFormat.SERVICE)}">${humanizeDate(point.dateTo, DateFormat.VIEW)}</time>
         </p>
         <p class="event__duration">${getDuration(point.dateFrom,point.dateTo)}</p>
       </div>
