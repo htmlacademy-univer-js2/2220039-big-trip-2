@@ -25,7 +25,7 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
 
     ${POINT_TYPES.map((type) => (
       `<div class="event__type-item">
-          <input id="event-type-${type}-${pointId}" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${type}">
+          <input id="event-type-${type}-${pointId}" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${type}" ${point.type === type ? 'checked' : ''}>
           <label class="event__type-label  event__type-label--${type}" for="event-type-${type}-${pointId}">${upFirstLetter(type)}</label>
         </div>`
     )).join('')}
@@ -60,11 +60,13 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
         <input class="event__input  event__input--price" id="event-price-${pointId}" type="text" name="event-price" value="${point.basePrice}">
       </div>
 
-      <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
-      <button class="event__reset-btn" type="reset">Delete</button>
-      <button class="event__rollup-btn" type="button">
+      <button class="event__save-btn  btn  btn--blue" type="submit">${point.id ? 'Save' : 'Save'}</button>
+      <button class="event__reset-btn" type="reset">${point.id ? 'Delete' : 'Cancel'}</button>
+      ${point.id ? (
+        ` <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>
-      </button>
+      </button>`
+      ) : ''}
     </header>
     <section class="event__details">
     ${pointTypeOffers.length > 0 ? (`<section class="event__section  event__section--offers">
