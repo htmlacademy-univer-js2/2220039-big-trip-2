@@ -37,7 +37,7 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
         <label class="event__label  event__type-output" for="event-destination-${point.id}">
           ${point.type}
         </label>
-        <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="${pointDestination.name}" list="destination-list-${point.id}">
+        <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="${pointDestination?.name || ''}" list="destination-list-${point.id}">
         <datalist id="destination-list-${point.id}">
           ${destinations.map((dest) => `<option value="${dest.name}"></option>`).join('')}
         </datalist>
@@ -85,8 +85,8 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
         </div>
         </section>`
     ) : ''}
-
-      <section class="event__section  event__section--destination">
+        ${pointDestination ? (
+      `<section class="event__section  event__section--destination">
         <h3 class="event__section-title  event__section-title--destination">Destination</h3>
         <p class="event__destination-description">${pointDestination.description}</p>
 
@@ -95,7 +95,9 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
           ${pointDestination.pictures.map((pic) => `<img class="event__photo" src="${pic.src}" alt="${pic.description}">`)}
           </div>
       </div>
-      </section>
+      </section>`
+    ) : ''}
+
     </section>
   </form>
   </li>`);

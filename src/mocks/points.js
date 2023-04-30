@@ -3,7 +3,7 @@ export const points = [
     'basePrice': 1100,
     'dateFrom': '2019-07-10T20:55:56.845Z',
     'dateTo': '2019-07-11T11:20:55.375Z',
-    'destination': 1,
+    'destination': 0,
     'id': 1,
     'isFavorite': true,
     'offers': [5, 6, 7],

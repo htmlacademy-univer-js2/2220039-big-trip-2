@@ -24,7 +24,7 @@ export default class Trip {
     render(new PointNewView(), this.component.getElement());
     render(new PointEditView(points[0], destinations, offersByType), this.component.getElement());
 
-    for (const point of points){
+    for (const point of points.slice(1)){
       render(new PointView(point, destinations, offersByType), this.component.getElement());
     }
   }
