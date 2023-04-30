@@ -66,25 +66,25 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
       </button>
     </header>
     <section class="event__details">
-      <section class="event__section  event__section--offers">
-        <h3 class="event__section-title  event__section-title--offers">Offers</h3>
+    ${pointTypeOffers.length > 0 ? (`<section class="event__section  event__section--offers">
+    <h3 class="event__section-title  event__section-title--offers">Offers</h3>
 
-        <div class="event__available-offers">
+    <div class="event__available-offers">
 
-    ${pointTypeOffers.map((typeOffer) => (
-      `<div class="event__offer-selector">
-        <input class="event__offer-checkbox  visually-hidden" id="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}"
-         type="checkbox" name="event-offer-${formatOfferTitles(typeOffer.title)}" ${point.offers.includes(typeOffer.id) ? 'checked' : ''}>
-        <label class="event__offer-label" for="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}">
-        <span class="event__offer-title">${typeOffer.title}</span>
-          &plus;&euro;&nbsp;
-        <span class="event__offer-price">${typeOffer.price}</span>
-        </label>
-      </div>`
-    )).join('')}
-
+      ${pointTypeOffers.map((typeOffer) => (
+        `<div class="event__offer-selector">
+          <input class="event__offer-checkbox  visually-hidden" id="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}"
+          type="checkbox" name="event-offer-${formatOfferTitles(typeOffer.title)}" ${point.offers.includes(typeOffer.id) ? 'checked' : ''}>
+          <label class="event__offer-label" for="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}">
+          <span class="event__offer-title">${typeOffer.title}</span>
+            &plus;&euro;&nbsp;
+          <span class="event__offer-price">${typeOffer.price}</span>
+          </label>
+        </div>`
+      )).join('')}
         </div>
-      </section>
+        </section>`
+    ) : ''}
 
       <section class="event__section  event__section--destination">
         <h3 class="event__section-title  event__section-title--destination">Destination</h3>
