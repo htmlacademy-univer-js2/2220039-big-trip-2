@@ -39,9 +39,7 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
         </label>
         <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="${pointDestination.name}" list="destination-list-${point.id}">
         <datalist id="destination-list-${point.id}">
-          <option value="Amsterdam"></option>
-          <option value="Geneva"></option>
-          <option value="Chamonix"></option>
+          ${destinations.map((dest) => `<option value="${dest.name}"></option>`).join('')}
         </datalist>
       </div>
 
