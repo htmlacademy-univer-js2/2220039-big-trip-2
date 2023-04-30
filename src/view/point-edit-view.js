@@ -6,17 +6,18 @@ const formatOfferTitles = (title) => title.split('').join('_');
 const createPointEditTemplate = (point, destinations, offersByType) => {
   const pointDestination = destinations.find((dest) => dest.id === point.destination);
   const pointTypeOffers = offersByType.find((off) => off.type === point.type).offers;
+  const pointId = point.id || 0;
 
   return (
     `<li class="trip-events__item">
       <form class="event event--edit" action="#" method="post">
         <header class="event__header">
           <div class="event__type-wrapper">
-            <label class="event__type  event__type-btn" for="event-type-toggle-${point.id}">
+            <label class="event__type  event__type-btn" for="event-type-toggle-${pointId}">
               <span class="visually-hidden">Choose event type</span>
               <img class="event__type-icon" width="17" height="17" src="img/icons/${point.type}.png" alt="Event type icon">
             </label>
-            <input class="event__type-toggle  visually-hidden" id="event-type-toggle-${point.id}" type="checkbox">
+            <input class="event__type-toggle  visually-hidden" id="event-type-toggle-${pointId}" type="checkbox">
 
           <div class="event__type-list">
             <fieldset class="event__type-group">
@@ -24,8 +25,8 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
 
     ${POINT_TYPES.map((type) => (
       `<div class="event__type-item">
-          <input id="event-type-${type}-${point.id}" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${type}">
-          <label class="event__type-label  event__type-label--${type}" for="event-type-${type}-${point.id}">${upFirstLetter(type)}</label>
+          <input id="event-type-${type}-${pointId}" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${type}">
+          <label class="event__type-label  event__type-label--${type}" for="event-type-${type}-${pointId}">${upFirstLetter(type)}</label>
         </div>`
     )).join('')}
 
@@ -34,29 +35,29 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
       </div>
 
       <div class="event__field-group  event__field-group--destination">
-        <label class="event__label  event__type-output" for="event-destination-${point.id}">
+        <label class="event__label  event__type-output" for="event-destination-${pointId}">
           ${point.type}
         </label>
-        <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="${pointDestination?.name || ''}" list="destination-list-${point.id}">
-        <datalist id="destination-list-${point.id}">
+        <input class="event__input  event__input--destination" id="event-destination-${pointId}" type="text" name="event-destination" value="${pointDestination?.name || ''}" list="destination-list-${pointId}">
+        <datalist id="destination-list-${pointId}">
           ${destinations.map((dest) => `<option value="${dest.name}"></option>`).join('')}
         </datalist>
       </div>
 
       <div class="event__field-group  event__field-group--time">
-        <label class="visually-hidden" for="event-start-time-${point.id}">From</label>
-        <input class="event__input  event__input--time" id="event-start-time-${point.id}" type="text" name="event-start-time" value="${'18/03/19 12:25'}">
+        <label class="visually-hidden" for="event-start-time-${pointId}">From</label>
+        <input class="event__input  event__input--time" id="event-start-time-${pointId}" type="text" name="event-start-time" value="${'18/03/19 12:25'}">
         &mdash;
-        <label class="visually-hidden" for="event-end-time-${point.id}">To</label>
-        <input class="event__input  event__input--time" id="event-end-time-${point.id}" type="text" name="event-end-time" value="${'18/03/19 13:35'}">
+        <label class="visually-hidden" for="event-end-time-${pointId}">To</label>
+        <input class="event__input  event__input--time" id="event-end-time-${pointId}" type="text" name="event-end-time" value="${'18/03/19 13:35'}">
       </div>
 
       <div class="event__field-group  event__field-group--price">
-        <label class="event__label" for="event-price-${point.id}">
+        <label class="event__label" for="event-price-${pointId}">
           <span class="visually-hidden">Price</span>
           &euro;
         </label>
-        <input class="event__input  event__input--price" id="event-price-${point.id}" type="text" name="event-price" value="${point.basePrice}">
+        <input class="event__input  event__input--price" id="event-price-${pointId}" type="text" name="event-price" value="${point.basePrice}">
       </div>
 
       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
@@ -73,9 +74,9 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
 
       ${pointTypeOffers.map((typeOffer) => (
         `<div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}"
+          <input class="event__offer-checkbox  visually-hidden" id="event-offer-${formatOfferTitles(typeOffer.title)}-${pointId}"
           type="checkbox" name="event-offer-${formatOfferTitles(typeOffer.title)}" ${point.offers.includes(typeOffer.id) ? 'checked' : ''}>
-          <label class="event__offer-label" for="event-offer-${formatOfferTitles(typeOffer.title)}-${point.id}">
+          <label class="event__offer-label" for="event-offer-${formatOfferTitles(typeOffer.title)}-${pointId}">
           <span class="event__offer-title">${typeOffer.title}</span>
             &plus;&euro;&nbsp;
           <span class="event__offer-price">${typeOffer.price}</span>
