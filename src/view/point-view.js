@@ -1,4 +1,6 @@
 import { createElement } from '../render';
+import { getDuration, humanizeDate } from '../util/utils';
+import { DateFormat } from '../const';
 
 const  createPointTemplate = (point, destinations, offersByType) => {
   const pointDestination = destinations.find((dest) => dest.id === point.destination);
@@ -8,18 +10,18 @@ const  createPointTemplate = (point, destinations, offersByType) => {
   return (
     `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="${'2019-03-18'}">${'MAR 18'}</time>
+        <time class="event__date" datetime="${'2019-03-18'}">${humanizeDate(point.dateFrom, DateFormat.MAIN)}</time>
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${point.type}.png" alt="Event type icon">
       </div>
       <h3 class="event__title">${point.type} ${pointDestination.name}</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="${'2019-03-18T12:25'}">${'12:25'}</time>
+          <time class="event__start-time" datetime="${'2019-03-18T12:25'}">${humanizeDate(point.dateFrom, DateFormat.VIEW)}</time>
           —
-          <time class="event__end-time" datetime="${'2019-03-18T13:35'}">${'13:35'}</time>
+          <time class="event__end-time" datetime="${'2019-03-18T13:35'}">${humanizeDate(point.dateTo, DateFormat.VIEW)}</time>
         </p>
-        <p class="event__duration">01H 10M</p>
+        <p class="event__duration">${getDuration(point.dateFrom,point.dateTo)}</p>
       </div>
       <p class="event__price">
         €&nbsp;<span class="event__price-value">${point.basePrice}</span>
