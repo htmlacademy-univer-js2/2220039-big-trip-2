@@ -23,7 +23,7 @@ export default class Trip {
     render(new SortView(), this.container);
     render(this.component, this.container);
     render(new PointEditView(getDefaultPoint(), destinations, offersByType), this.component.getElement());
-    render(new PointEditView(points[0], destinations, offersByType), this.component.getElement());
+    render(new PointEditView(points[1], destinations, offersByType), this.component.getElement());
 
     for (const point of points){
       render(new PointView(point, destinations, offersByType), this.component.getElement());

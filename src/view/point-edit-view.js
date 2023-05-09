@@ -2,6 +2,8 @@ import { POINT_TYPES } from '../const';
 import { createElement } from '../render';
 const upFirstLetter = (word) => `${word[0].toUpperCase()}${word.slice(1)}`;
 const formatOfferTitles = (title) => title.split('').join('_');
+import { getDuration, humanizeDate } from '../util/utils';
+import { DateFormat } from '../const';
 
 const createPointEditTemplate = (point, destinations, offersByType) => {
   const pointDestination = destinations.find((dest) => dest.id === point.destination);
@@ -46,10 +48,10 @@ const createPointEditTemplate = (point, destinations, offersByType) => {
 
       <div class="event__field-group  event__field-group--time">
         <label class="visually-hidden" for="event-start-time-${pointId}">From</label>
-        <input class="event__input  event__input--time" id="event-start-time-${pointId}" type="text" name="event-start-time" value="${'18/03/19 12:25'}">
+        <input class="event__input  event__input--time" id="event-start-time-${pointId}" type="text" name="event-start-time" value="${humanizeDate(point.dateFrom, DateFormat.EDIT)}">
         &mdash;
         <label class="visually-hidden" for="event-end-time-${pointId}">To</label>
-        <input class="event__input  event__input--time" id="event-end-time-${pointId}" type="text" name="event-end-time" value="${'18/03/19 13:35'}">
+        <input class="event__input  event__input--time" id="event-end-time-${pointId}" type="text" name="event-end-time" value="${humanizeDate(point.dateTo, DateFormat.EDIT)}">
       </div>
 
       <div class="event__field-group  event__field-group--price">
