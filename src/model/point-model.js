@@ -1,23 +1,27 @@
-import { points } from '../mocks/points';
-import { destinations } from '../mocks/destinations';
-import { offersByType } from '../mocks/offer';
+export default class PointsModel {
+  #points = null;
+  #destinations = null;
+  #offers = null;
 
-export default class PointModel {
   constructor() {
-    this.points = points;
-    this.destinations = destinations;
-    this.offersByType = offersByType;
+    this.#points = [];
   }
 
-  getPoints() {
-    return this.points;
+  init(points, destinations, offers) {
+    this.#points = points;
+    this.#destinations = destinations;
+    this.#offers = offers;
   }
 
-  getDestinations() {
-    return this.destinations;
+  get points() {
+    return this.#points;
   }
 
-  getOffersByType() {
-    return this.offersByType;
+  get destinations() {
+    return this.#destinations;
+  }
+
+  get offers() {
+    return this.#offers;
   }
 }

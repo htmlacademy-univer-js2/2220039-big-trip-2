@@ -1,9 +1,9 @@
-import { createElement } from '../render';
+import { createElement } from '../render.js';
 
-const createFilterTemplate = () => (
+const createFiltersTemplate = () => (
   `<form class="trip-filters" action="#" method="get">
   <div class="trip-filters__filter">
-    <input id="filter-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything" checked="">
+    <input id="filter-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything">
     <label class="trip-filters__filter-label" for="filter-everything">Everything</label>
   </div>
 
@@ -13,7 +13,7 @@ const createFilterTemplate = () => (
   </div>
 
   <div class="trip-filters__filter">
-    <input id="filter-past" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="past">
+    <input id="filter-past" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="past" checked>
     <label class="trip-filters__filter-label" for="filter-past">Past</label>
   </div>
 
@@ -21,20 +21,22 @@ const createFilterTemplate = () => (
 </form>`
 );
 
-export default class FilterView{
-  getTemplate() {
-    return createFilterTemplate();
+export default class FiltersView {
+  #element =null;
+
+  get template () {
+    return createFiltersTemplate();
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element){
+      this.#element = createElement(this.template);
     }
 
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
