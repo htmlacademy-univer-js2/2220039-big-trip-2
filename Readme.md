@@ -1,6 +1,6 @@
 # Проект «Большое путешествие»
 
-* Студент: [Артём Семёнов](https://up.htmlacademy.ru/univer-js2/2/user/2220039).
+* Студент: [Артём Семdёнов](https://up.htmlacademy.ru/univer-js2/2/user/2220039).
 * Наставник: [Олег Глущенко](https://htmlacademy.ru/profile/id305355).
 
 ---
