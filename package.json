@@ -31,5 +31,9 @@
   },
   "engines": {
     "node": "16"
+  },
+  "dependencies": {
+    "node": "^16.0.0",
+    "nvm": "^0.0.4"
   }
 }
