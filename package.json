@@ -31,5 +31,8 @@
   },
   "engines": {
     "node": "16"
+  },
+  "dependencies": {
+    "16": "^0.0.2"
   }
 }
