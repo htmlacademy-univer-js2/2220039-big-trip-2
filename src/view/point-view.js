@@ -10,7 +10,7 @@ const BLANK_POINT = {
   basePrice: 100,
   dateFrom: dayjs(),
   dateTo: dayjs(),
-  destination: 1,
+  destination: null,
   isFavorite: false,
   offers: [],
   type: PointType.TAXI,
