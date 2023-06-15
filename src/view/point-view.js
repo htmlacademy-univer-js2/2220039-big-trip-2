@@ -213,7 +213,7 @@ export default class PointView extends AbstractStatefulView {
     evt.preventDefault();
     const destination = this.#destinations.find((dest) => dest.name === evt.target.value);
     this.updateElement({
-      destination: destination.id,
+      destination : destination !== undefined ? destination.id : '',
     });
   };
 
