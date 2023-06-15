@@ -10,7 +10,7 @@ const BLANK_POINT = {
   basePrice: 100,
   dateFrom: dayjs(),
   dateTo: dayjs(),
-  destination: 1,
+  destination: null,
   isFavorite: false,
   offers: [],
   type: PointType.TAXI,
@@ -198,13 +198,13 @@ export default class PointView extends AbstractStatefulView {
   };
 
   #pointDateFromChangeHandler = ([userDate]) => {
-    this.updateElement({
+    this._setState({
       dateFrom: userDate,
     });
   };
 
   #pointDateToChangeHandler = ([userDate]) => {
-    this.updateElement({
+    this._setState({
       dateTo: userDate,
     });
   };
@@ -213,7 +213,7 @@ export default class PointView extends AbstractStatefulView {
     evt.preventDefault();
     const destination = this.#destinations.find((dest) => dest.name === evt.target.value);
     this.updateElement({
-      destination: destination.id,
+      destination : destination !== undefined ? destination.id : '',
     });
   };
 
