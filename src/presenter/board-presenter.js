@@ -75,6 +75,7 @@ export default class BoardPresenter {
     this.#filterModel.setFilter(UpdateType.MAJOR, FilterType.EVERYTHING);
     if (this.#noPointComponent) {
       render(this.#pointListComponent, this.#tripContainer);
+      remove(this.#noPointComponent);
     }
     this.#pointNewPresenter.init(callback);
   };
