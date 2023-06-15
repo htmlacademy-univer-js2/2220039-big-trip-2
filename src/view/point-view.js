@@ -198,13 +198,13 @@ export default class PointView extends AbstractStatefulView {
   };
 
   #pointDateFromChangeHandler = ([userDate]) => {
-    this.updateElement({
+    this._setState({
       dateFrom: userDate,
     });
   };
 
   #pointDateToChangeHandler = ([userDate]) => {
-    this.updateElement({
+    this._setState({
       dateTo: userDate,
     });
   };
